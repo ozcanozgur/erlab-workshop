@@ -12,25 +12,19 @@
       <div class="sidebar">
         <ul id="options" class="options vertical-center">
           <li style="opacity: 0.3">
-            <a id="one" onclick="openTab(event, 'menu')" href="#menu">Menu</a>
+            <a id="one" onclick="openTab( 'menu')" href="#menu">Menu</a>
           </li>
           <li style="opacity: 0.7">
-            <a id="two" onclick="openTab(event, 'series')" href="#series"
-              >Series</a
-            >
+            <a id="two" onclick="openTab( 'series')" href="#series">Series</a>
           </li>
           <li class="">
-            <a id="three" onclick="openTab(event, 'home')" href="#home">Home</a>
+            <a id="three" onclick="openTab('home')" href="#home">Home</a>
           </li>
           <li style="opacity: 0.7">
-            <a id="four" onclick="openTab(event, 'menu2')" href="#menu2"
-              >Menu</a
-            >
+            <a id="four" onclick="openTab('menu2')" href="#menu2">Menu</a>
           </li>
           <li style="opacity: 0.3">
-            <a id="five" onclick="openTab(event, 'menu3')" href="#menu3"
-              >Menu</a
-            >
+            <a id="five" onclick="openTab('menu3')" href="#menu3">Menu</a>
           </li>
         </ul>
       </div>
@@ -553,6 +547,7 @@
       /* ---------------------------------------------------    Constants End    ---------------------------------------------------   */
 
       sidebarButtons[currentTab].classList.add("selected");
+      sidebarButtons[currentTab].getElementsByTagName("a")[0].click();
 
       document.addEventListener("keydown", function (e) {
         switch (e.keyCode) {
@@ -628,14 +623,13 @@
                 currentTab < sidebarButtons.length - 1
                   ? ++currentTab
                   : sidebarButtons.length - 1; // Increase counter
+
               sidebarButtons[currentTab].classList.add("selected"); // Highlight the new element
             } else {
               contentElements[currentElement].classList.remove("selected");
 
               currentElement + elementSizes / 2 < contentElements.length &&
                 (currentElement += elementSizes / 2); // Decrease the counter
-              console.log(currentElement);
-              //currentElement -= 8; // Decrease the counter
 
               contentElements[currentElement].classList.add("selected"); // Highlight the new element
             }
@@ -643,7 +637,7 @@
         }
       });
 
-      function openTab(evt, tabName) {
+      function openTab(tabName) {
         var i, tabcontent, tablinks;
 
         var container = document.querySelector(".container");
@@ -666,7 +660,6 @@
 
         sidebarButtons[currentTab].classList.add("selected");
         document.getElementById(tabName).style.display = "block";
-        //evt.currentTarget.className += " selected";
       }
     </script>
   </body>
