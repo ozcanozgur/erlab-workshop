@@ -577,9 +577,9 @@
       document.addEventListener("keydown", function (e) {
         switch (e.keyCode) {
           case 13: // Enter
-            //e.preventDefault();
             sidebarButtons[currentTab].getElementsByTagName("a")[0].click();
 
+            //change sidebar items position
             if (currentTab < 2) {
               sidebarButtons[currentTab].parentNode.insertBefore(
                 sidebarButtons[currentTab],
@@ -592,11 +592,12 @@
               );
             }
 
+            //change sidebar items opacity
             for (var i = 0; i < sidebarButtons.length; i++) {
               sidebarButtons[i].getElementsByTagName("a")[0].style.opacity =
                 opacityList[i];
-              console.log(sidebarButtons[i].getElementsByTagName("a")[0]);
-              console.log(opacityList[i]);
+
+              currentTab = 2;
             }
             break;
           case 37: // Left Arrow
@@ -694,11 +695,13 @@
           container.style.backgroundColor = "#000000";
         }
 
+        //make hidden all content
         tabcontent = document.getElementsByClassName("content");
         for (i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
         }
 
+        //display related content div
         content = document.querySelector("#" + tabName);
         contentElements = content.getElementsByTagName("a");
 
