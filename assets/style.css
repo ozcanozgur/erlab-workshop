@@ -97,6 +97,10 @@ a {
   border: 0px solid #000000;
 }
 
+.item:focus {
+  outline: none;
+}
+
 .flex-container .selected {
   /* shadow */
   -webkit-box-shadow: 0px 0px 28px 6px rgba(80, 41, 207, 1);

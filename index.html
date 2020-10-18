@@ -547,6 +547,7 @@
       var currentTab = 2;
       /* current selected card */
       var currentElement = 0;
+      var elementSizes = contentElements.length;
       /* mode 1 sideBar open else sideBar closed */
       var mode = 1;
       /* ---------------------------------------------------    Constants End    ---------------------------------------------------   */
@@ -560,12 +561,19 @@
             sidebarButtons[currentTab].getElementsByTagName("a")[0].click();
             break;
           case 37: // Left Arrow
-            if (mode === 0 && currentElement === 0) {
+            if (
+              mode === 0 &&
+              (currentElement === 0 || currentElement === elementSizes / 2)
+            ) {
               sidebar.style.width = 300;
               content.style.marginLeft = 300;
               mode = 1;
 
-              contentElements[0].classList.remove("selected");
+              //Remove selected class when open sidebar
+              contentElements[currentElement].classList.remove("selected");
+              //contentElements[elementSizes/2].classList.remove("selected");
+              contentElements[currentElement];
+              contentElements[currentElement].focus();
             }
             if (mode === 0) {
               contentElements[currentElement].classList.remove("selected");
@@ -573,6 +581,7 @@
               currentElement = currentElement > 0 ? --currentElement : 0; // Decrease the counter
 
               contentElements[currentElement].classList.add("selected"); // Highlight the new element
+              contentElements[currentElement].scrollIntoView();
             }
             break;
           case 38: // Up Arrow
@@ -584,9 +593,8 @@
             } else {
               contentElements[currentElement].classList.remove("selected");
 
-              currentElement - 8 >= 0 && (currentElement -= 8); // Decrease the counter
-              console.log(currentElement);
-              //currentElement -= 8; // Decrease the counter
+              currentElement - elementSizes / 2 >= 0 &&
+                (currentElement -= elementSizes / 2); // Decrease the counter
 
               contentElements[currentElement].classList.add("selected"); // Highlight the new element
             }
@@ -608,8 +616,7 @@
                   : contentElements.length - 1; // Increase counter
 
               contentElements[currentElement].classList.add("selected");
-
-              console.log(currentElement);
+              contentElements[currentElement].focus();
             }
             break;
           case 40: // Down Arrow
@@ -625,8 +632,8 @@
             } else {
               contentElements[currentElement].classList.remove("selected");
 
-              currentElement + 8 < contentElements.length &&
-                (currentElement += 8); // Decrease the counter
+              currentElement + elementSizes / 2 < contentElements.length &&
+                (currentElement += elementSizes / 2); // Decrease the counter
               console.log(currentElement);
               //currentElement -= 8; // Decrease the counter
 
@@ -648,14 +655,12 @@
           container.style.backgroundImage = "url('header-background.png')";
           container.style.backgroundColor = "#000000";
         }
+
         tabcontent = document.getElementsByClassName("content");
         for (i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
         }
-        /* tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        } */
+
         content = document.querySelector("#" + tabName);
         contentElements = content.getElementsByTagName("a");
 
