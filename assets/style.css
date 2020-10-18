@@ -67,15 +67,6 @@ a {
   display: none;
 }
 
-@media (max-width: 1500px) {
-  .sidebar {
-    width: 0px;
-  }
-  .home {
-    margin-left: 0px;
-  }
-}
-
 /*  */
 .flex-container {
   margin-top: 100px;
